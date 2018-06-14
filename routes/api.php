@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+
+//Route::get('/notes', 'NotesController')->middleware('auth:api');
+
+
+App::bind('App\Repositories\NotesInterface', 'App\Repositories\Notes');
+
+Route::get('/notes/{user_id}', 'NotesController@getNotes');
+Route::post('/notes', 'NotesController@createNotes');
