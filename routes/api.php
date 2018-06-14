@@ -22,5 +22,14 @@ use Illuminate\Http\Request;
 
 App::bind('App\Repositories\NotesInterface', 'App\Repositories\Notes');
 
-Route::get('/notes/{user_id}', 'NotesController@getNotes');
-Route::post('/notes', 'NotesController@createNotes');
+//Route::get('/notes/{user_id}', 'NotesController@getAllUserNotes');
+//Route::post('/notes', 'NotesController@createNotes');
+
+
+Use App\Note;
+ 
+Route::get('notes', 'NotesController@index');
+Route::get('notes/{id}', 'NotesController@show');
+Route::post('notes', 'NotesController@store');
+Route::put('notes/{id}', 'NotesController@update');
+Route::delete('notes/{id}', 'NotesController@delete');
