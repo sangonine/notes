@@ -12,8 +12,8 @@ class NotesController extends Controller{
         $this->notes = $notes;
     }
     
-    public function index(){
-        return $this->notes->all(); 
+    public function index(Request $request){
+        return $this->notes->all($request['user_id']); 
     }
  
     public function show($id){
@@ -21,15 +21,18 @@ class NotesController extends Controller{
     }
 
     public function store(Request $request){
-        return $this->notes->create($request); 
+        $result = $this->notes->create($request->all()); 
+        return response()->json($result, 201);
     }
 
     public function update(Request $request, $id){
-        return $this->notes->update($request->all(),$id);
+        $result = $this->notes->update($request->all(),$id);
+        return response()->json($result, 200);
     }
 
     public function delete(Request $request, $id){
-        return $this->notes->delete($id);
+        $this->notes->delete($id);
+        return response()->json(null, 204);
     }    
 
 }

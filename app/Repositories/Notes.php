@@ -5,8 +5,8 @@ namespace App\Repositories;
 use App\Note;
 
 class Notes implements NotesInterface{
-    public function all(){
-        return Note::where('id',$userId)->get();
+    public function all($userId){
+        return Note::where('user_id',$userId)->get();
     }
     
     public function find($id){
@@ -14,7 +14,7 @@ class Notes implements NotesInterface{
     }    
     
     public function create($data){
-        return $data->save($data);
+        return Note::create($data);
     }
     
     public function update($data,$noteId){

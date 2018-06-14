@@ -26,10 +26,12 @@ App::bind('App\Repositories\NotesInterface', 'App\Repositories\Notes');
 //Route::post('/notes', 'NotesController@createNotes');
 
 
-Use App\Note;
- 
-Route::get('notes', 'NotesController@index');
+
+Route::post('notes/all', 'NotesController@index');
 Route::get('notes/{id}', 'NotesController@show');
 Route::post('notes', 'NotesController@store');
 Route::put('notes/{id}', 'NotesController@update');
 Route::delete('notes/{id}', 'NotesController@delete');
+
+
+Route::post('register', 'Auth\RegisterController@register');

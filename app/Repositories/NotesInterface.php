@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 interface NotesInterface{
-    public function all();
+    public function all($userId);
     
     public function find($id);
     
