@@ -27,11 +27,13 @@ App::bind('App\Repositories\NotesInterface', 'App\Repositories\Notes');
 
 
 
-Route::post('notes/all', 'NotesController@index')->middleware('auth:api');
-Route::get('notes/{id}', 'NotesController@show')->middleware('auth:api');
-Route::post('notes', 'NotesController@store')->middleware('auth:api');
-Route::put('notes/{id}', 'NotesController@update')->middleware('auth:api');
-Route::delete('notes/{id}', 'NotesController@delete')->middleware('auth:api');
 
-
-//Route::post('register', 'Auth\RegisterController@register');
+Route::post('login', 'PassportController@login');
+Route::post('register', 'PassportController@register');
+Route::group(['middleware' => 'auth:api'], function() {
+    Route::post('notes/all', 'NotesController@index');
+    Route::get('notes/{id}', 'NotesController@show');
+    Route::post('notes', 'NotesController@store');
+    Route::put('notes/{id}', 'NotesController@update');
+    Route::delete('notes/{id}', 'NotesController@delete');
+});
