@@ -27,7 +27,7 @@ App::bind('App\Repositories\NotesInterface', 'App\Repositories\Notes');
 
 
 
-
+//Route::post('notes/all', 'NotesController@index');
 Route::post('login', 'PassportController@login');
 Route::post('register', 'PassportController@register');
 Route::group(['middleware' => 'auth:api'], function() {
